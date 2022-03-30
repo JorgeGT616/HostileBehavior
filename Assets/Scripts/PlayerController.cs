@@ -14,9 +14,16 @@ public class PlayerController : MonoBehaviour{
     public float speed;
     public Boundary boundary;
 
+    public Transform shootOrigin;
+    public GameObject shootPrefab;
+
+
+    private void Start() {
+        moverComponent.speed = speed;
+    }
     void Update(){
-        Vector3 desplazamiento = new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime, transform.position.z);
-        moverComponent.DoMove(desplazamiento);
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal") , Input.GetAxis("Vertical") , transform.position.z);
+        moverComponent.direction = direction;
 
         //x: 9
         //y: 5
@@ -24,6 +31,10 @@ public class PlayerController : MonoBehaviour{
         float x = Mathf.Clamp(transform.position.x, boundary.xMinimum, boundary.xMaximum);
         float y = Mathf.Clamp(transform.position.y, boundary.yMinimum, boundary.yMaximum);
         transform.position = new Vector3(x, y);
+
+        if (Input.GetButtonDown("Shoot")){
+            Instantiate(shootPrefab, shootOrigin, false);
+        }
 
     }
 
