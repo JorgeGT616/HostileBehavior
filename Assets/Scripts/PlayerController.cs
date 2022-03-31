@@ -20,22 +20,24 @@ public class PlayerController : MonoBehaviour{
 
     private void Start() {
         moverComponent.speed = speed;
+        InputProvider.OnHasShoot += OnHasShoot;
+        InputProvider.OnDirection += OnDirection;
     }
-    void Update(){
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal") , Input.GetAxis("Vertical") , transform.position.z);
-        moverComponent.direction = direction;
 
+    private void OnDirection(Vector3 direction){
+        moverComponent.direction = direction;
+    }
+
+    private void OnHasShoot() {
+        Instantiate(shootPrefab, shootOrigin, false);
+    }
+
+    void Update(){
         //x: 9
         //y: 5
         //limitar el borde para el jugador y no se pueda alejar la nave 
         float x = Mathf.Clamp(transform.position.x, boundary.xMinimum, boundary.xMaximum);
         float y = Mathf.Clamp(transform.position.y, boundary.yMinimum, boundary.yMaximum);
         transform.position = new Vector3(x, y);
-
-        if (Input.GetButtonDown("Shoot")){
-            Instantiate(shootPrefab, shootOrigin, false);
-        }
-
     }
-
 }
