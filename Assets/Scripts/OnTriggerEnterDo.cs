@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnCollisionDo : MonoBehaviour { 
+public class OnTriggerEnterDo : MonoBehaviour { 
     [SerializeField] private UnityEvent action;
 
     private GameObject collisionee;

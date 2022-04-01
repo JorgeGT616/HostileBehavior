@@ -11,7 +11,7 @@ public class AutoScroller : MonoBehaviour
     [SerializeField] private MeshRenderer mesh;
     void Update()
     {
-        Vector2 offset = new Vector2(0, Time.time * scrollSpeed);
+        Vector2 offset = new Vector2(Time.time * scrollSpeed, 0);
         mesh.material.mainTextureOffset = offset;
     }
 }
