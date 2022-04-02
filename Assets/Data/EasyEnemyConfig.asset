@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: EasyEnemyConfig
   m_EditorClassIdentifier: 
   moverSpeed: 1.5
+  material: {fileID: -2505642851634945670, guid: 5db4a15cdac5f5f45bd271443075b4de,
+    type: 3}

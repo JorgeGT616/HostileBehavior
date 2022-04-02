@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyConfig", menuName = "Enemies/Enemy config", order = 0)]
 public class EnemyConfig : ScriptableObject {
     public float moverSpeed;
-    public Sprite sprite;
+    public Material material;
 
 }

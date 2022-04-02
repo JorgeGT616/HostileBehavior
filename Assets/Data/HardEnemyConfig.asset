@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: HardEnemyConfig
   m_EditorClassIdentifier: 
   moverSpeed: 5
+  material: {fileID: 1340342096324179341, guid: 5db4a15cdac5f5f45bd271443075b4de,
+    type: 3}

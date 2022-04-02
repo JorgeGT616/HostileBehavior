@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     private void OnHasShoot() {
-        Instantiate(shootPrefab, shootOrigin, false);
+        Instantiate(shootPrefab, shootOrigin.position, shootOrigin.rotation);
     }
 
     void Update(){
