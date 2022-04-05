@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b31fb4e3c3d9ae741a2c997f40ff36c1, type: 3}
-  m_Name: EasyEnemyConfig
+  m_Name: Alien
   m_EditorClassIdentifier: 
-  moverSpeed: 1.5
-  material: {fileID: -2505642851634945670, guid: 5db4a15cdac5f5f45bd271443075b4de,
+  moverSpeed: 1
+  material: {fileID: 1340342096324179341, guid: 5db4a15cdac5f5f45bd271443075b4de,
     type: 3}
-  isShooter: 0
-  shootInitialWaitTime: 0
-  shootCadence: 0
-  score: 25
+  isShooter: 1
+  shootInitialWaitTime: 1
+  shootCadence: 1
+  score: 100
