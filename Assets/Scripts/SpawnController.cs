@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour {
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefab;
+    public List<EnemyConfig> enemyConfigs;
 
     public Vector3 spawnReferencePosition;
     public Quaternion spawnRotation;
@@ -24,6 +25,12 @@ public class SpawnController : MonoBehaviour {
         }
     }
     public void SpawnEnemy(Vector3 enemyPosition, Quaternion rotation){
-        Instantiate(enemyPrefab, enemyPosition, rotation);
+        int randomIndex = Random.Range(0, enemyPrefab.Count);
+        var enemyInstance = Instantiate(enemyPrefab[randomIndex], enemyPosition, rotation);
+        var enemyController = enemyInstance.GetComponent<EnemyController>();
+        if (enemyController != null){
+            int randomConfigIndex = Random.Range(0, enemyConfigs.Count);
+            enemyController.config = enemyConfigs[randomConfigIndex];
+        }
     }
 }
