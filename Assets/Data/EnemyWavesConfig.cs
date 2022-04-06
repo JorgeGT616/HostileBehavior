@@ -10,7 +10,6 @@ public class EnemyWavesConfig : ScriptableObject {
         public EnemyController enemyPrefab;
         public Vector3 spawnReferencePosition;
         public bool useSpecificYPosition;
-        public EnemyConfig config;
     }
 
     public List<EachEnemyConfig> enemies;

@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour{
     public Mover moverComponent;
     public float speed;
     public Boundary boundary;
-    [SerializeField] private List<Shooter> shooters;
+
+    public Transform shootOrigin;
+    public GameObject shootPrefab;
 
 
     private void Start() {
@@ -27,10 +29,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     private void OnHasShoot() {
-        foreach(var shooter in shooters) {
-            shooter.DoShoot();
-            
-        }
+        Instantiate(shootPrefab, shootOrigin.position, shootOrigin.rotation);
     }
 
     void Update(){
