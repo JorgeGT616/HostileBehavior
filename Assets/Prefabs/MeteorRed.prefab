@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 0}
   meshRenderer: {fileID: 8582480088666383663}
+  meshFilter: {fileID: 4929623308611227931}
 --- !u!1001 &2847345524671311390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,11 +246,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7199646036943896325, guid: 5940cee9d43c79d4594bbe4446701c4b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8560388924704043023, guid: 5db4a15cdac5f5f45bd271443075b4de,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5940cee9d43c79d4594bbe4446701c4b, type: 3}
 --- !u!4 &9166369197185706839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6392491966294312265, guid: 5940cee9d43c79d4594bbe4446701c4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2847345524671311390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &4929623308611227931 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 7199646036943896325, guid: 5940cee9d43c79d4594bbe4446701c4b,
     type: 3}
   m_PrefabInstance: {fileID: 2847345524671311390}
   m_PrefabAsset: {fileID: 0}

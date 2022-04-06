@@ -15,6 +15,7 @@ MonoBehaviour:
   moverSpeed: 1.5
   material: {fileID: -2505642851634945670, guid: 5db4a15cdac5f5f45bd271443075b4de,
     type: 3}
+  mesh: {fileID: 7136782702619668717, guid: 5db4a15cdac5f5f45bd271443075b4de, type: 3}
   isShooter: 0
   shootInitialWaitTime: 0
   shootCadence: 0

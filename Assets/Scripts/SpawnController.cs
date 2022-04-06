@@ -30,7 +30,12 @@ public class SpawnController : MonoBehaviour {
         
     }
     public void SpawnEnemy(EnemyController enemyPrefab, EnemyConfig config, Vector3 enemyPosition, Quaternion rotation){
+<<<<<<< Updated upstream
         var enenmyInstance = Instantiate(enemyPrefab, enemyPosition, rotation);
         enenmyInstance.config = config;
+=======
+        var enemyInstance = Instantiate(enemyPrefab, enemyPosition, rotation);
+        enemyInstance.config = config;
+>>>>>>> Stashed changes
     }
 }
