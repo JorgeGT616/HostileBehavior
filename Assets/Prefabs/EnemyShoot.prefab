@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 627217253943353055}
   - component: {fileID: 6119150197419216692}
   - component: {fileID: 2119441635801224455}
-  m_Layer: 0
-  m_Name: PlayerShoot
+  m_Layer: 8
+  m_Name: EnemyShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 51a57e55e90ba8f478d355302627373e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.537
+  m_Volume: 0.519
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6432039026305598287}
   - component: {fileID: 2343142085819663712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
     type: 3}
-  m_Color: {r: 0.864215, g: 0.9056604, b: 0.12388753, a: 1}
+  m_Color: {r: 0.90588236, g: 0.22061333, b: 0.12549017, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

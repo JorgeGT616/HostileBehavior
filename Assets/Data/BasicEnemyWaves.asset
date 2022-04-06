@@ -17,12 +17,15 @@ MonoBehaviour:
       type: 3}
     spawnReferencePosition: {x: 9.2, y: 0, z: 0}
     useSpecificYPosition: 1
+    config: {fileID: 11400000, guid: 16f8cecaf322f324b95989238dac37d1, type: 2}
   - enemyPrefab: {fileID: 1157367769685547627, guid: 47a1ed4c26d34fc44ac5e1e4955d853e,
       type: 3}
     spawnReferencePosition: {x: 9.2, y: 0, z: 0}
     useSpecificYPosition: 1
+    config: {fileID: 11400000, guid: 16f8cecaf322f324b95989238dac37d1, type: 2}
   - enemyPrefab: {fileID: 1157367769685547627, guid: 47a1ed4c26d34fc44ac5e1e4955d853e,
       type: 3}
     spawnReferencePosition: {x: 9.2, y: 0, z: 0}
     useSpecificYPosition: 1
-  cadence: 0.25
+    config: {fileID: 11400000, guid: 16f8cecaf322f324b95989238dac37d1, type: 2}
+  cadence: 1

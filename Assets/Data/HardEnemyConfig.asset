@@ -15,3 +15,6 @@ MonoBehaviour:
   moverSpeed: 5
   material: {fileID: 1340342096324179341, guid: 5db4a15cdac5f5f45bd271443075b4de,
     type: 3}
+  isShooter: 1
+  shootInitialWaitTime: 1
+  shootCadence: 0.5

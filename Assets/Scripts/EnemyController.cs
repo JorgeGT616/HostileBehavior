@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,7 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] private MeshRenderer meshRenderer;
 
     private Mover mover;
+    private Shooter[] shooters;
 
     private void Start() {
         mover = GetComponent<Mover>();
@@ -19,7 +19,22 @@ public class EnemyController : MonoBehaviour {
         if (config.material != null){
             meshRenderer.material = config.material;
         }
+
+        if (config.isShooter) {
+            shooters = GetComponentsInChildren<Shooter>();
+            if (shooters != null && shooters.Length > 0) {
+                StartCoroutine(ShootForever());
+            }
+        }
     }
-    
+    private IEnumerator ShootForever() {
+        yield return new WaitForSeconds(config.shootInitialWaitTime);
+        while (true){
+            foreach(var shooter in shooters) {
+                shooter.DoShoot();
+            }
+            yield return new WaitForSeconds(config.shootCadence);
+        }
+    }
 }
 

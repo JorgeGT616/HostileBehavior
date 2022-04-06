@@ -22,14 +22,15 @@ public class SpawnController : MonoBehaviour {
                 } else {
                     enemyPosition = new Vector3(enemy.spawnReferencePosition.x, Random.Range(-enemy.spawnReferencePosition.y, enemy.spawnReferencePosition.y), enemy.spawnReferencePosition.z);
                 }
-                SpawnEnemy(enemy.enemyPrefab.gameObject, enemyPosition, spawnRotation);
+                SpawnEnemy(enemy.enemyPrefab, enemy.config, enemyPosition, spawnRotation);
                 yield return new WaitForSeconds(wave.cadence);
             }
             yield return new WaitForSeconds(cadenceBetweenWaves);
         }
         
     }
-    public void SpawnEnemy(GameObject enemyPrefab, Vector3 enemyPosition, Quaternion rotation){
-        Instantiate(enemyPrefab, enemyPosition, rotation);
+    public void SpawnEnemy(EnemyController enemyPrefab, EnemyConfig config, Vector3 enemyPosition, Quaternion rotation){
+        var enenmyInstance = Instantiate(enemyPrefab, enemyPosition, rotation);
+        enenmyInstance.config = config;
     }
 }
