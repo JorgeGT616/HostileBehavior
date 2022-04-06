@@ -14,11 +14,7 @@ public class PlayerController : MonoBehaviour{
     public float speed;
     public Boundary boundary;
     [SerializeField] private List<Shooter> shooters;
-<<<<<<< Updated upstream
 
-=======
-    
->>>>>>> Stashed changes
 
     private void Start() {
         moverComponent.speed = speed;
@@ -33,10 +29,7 @@ public class PlayerController : MonoBehaviour{
     private void OnHasShoot() {
         foreach(var shooter in shooters) {
             shooter.DoShoot();
-<<<<<<< Updated upstream
             
-=======
->>>>>>> Stashed changes
         }
     }
 

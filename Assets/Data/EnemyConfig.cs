@@ -6,17 +6,9 @@ using UnityEngine;
 public class EnemyConfig : ScriptableObject {
     public float moverSpeed;
     public Material material;
-<<<<<<< Updated upstream
     public bool isShooter;
     public float shootInitialWaitTime;
     public float shootCadence;
     public int score;
-=======
-    public Mesh mesh;
-    public bool isShooter;
-    public float shootInitialWaitTime;
-    public float shootCadence;
-
->>>>>>> Stashed changes
 
 }
