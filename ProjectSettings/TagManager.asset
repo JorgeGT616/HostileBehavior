@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelLimit
+  - Enemigos
+  - Enemy
+  - Jarron
   layers:
   - Default
   - TransparentFX
