@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 627217253943353055}
   - component: {fileID: 6119150197419216692}
   - component: {fileID: 2119441635801224455}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6432039026305598287}
   - component: {fileID: 2343142085819663712}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

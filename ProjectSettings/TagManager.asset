@@ -15,8 +15,8 @@ TagManager:
   - UntouchableAsteroid
   - DestroyableAsteroid
   - Enemy
-  - 
-  - 
+  - Player
+  - PlayerShoots
   - 
   - 
   - 
