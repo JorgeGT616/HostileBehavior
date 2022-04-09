@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombateJugador : MonoBehaviour {
-    [SerializeField] int vida;
+    [SerializeField] public int vida;
     [SerializeField] int maximoVida;
 
     private void Start() {

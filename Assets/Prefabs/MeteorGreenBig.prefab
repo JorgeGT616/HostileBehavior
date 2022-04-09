@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1666355760288964586}
   - component: {fileID: 1674129903499053869}
   - component: {fileID: 6548837110942890823}
-  - component: {fileID: -3651689085186164367}
-  m_Layer: 8
+  - component: {fileID: -3364518713792699616}
+  m_Layer: 11
   m_Name: MeteorGreenBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
---- !u!114 &-3651689085186164367
+--- !u!114 &-3364518713792699616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

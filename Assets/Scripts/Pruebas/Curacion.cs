@@ -6,7 +6,8 @@ public class Curacion : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
-            other.GetComponent<CombateJugador>().Curar(10);
+            other.GetComponent<CombateJugador>().Curar(1);
+            other.GetComponent<Mover>().Curar(1);
             Destroy(gameObject);
             
         }

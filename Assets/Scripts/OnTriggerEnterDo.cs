@@ -15,7 +15,8 @@ public class OnTriggerEnterDo : MonoBehaviour {
         if(collision.CompareTag("Player")) {
             tiempoSiguienteDaño -= Time.deltaTime;
             if(tiempoSiguienteDaño <= 0) {
-                collision.GetComponent<CombateJugador>().TomarDaño(5);
+                collision.GetComponent<CombateJugador>().TomarDaño(1);
+                collision.GetComponent<Mover>().TomarDaño(1);
                 tiempoSiguienteDaño = tiempoEntreDaño;
                 
             }
