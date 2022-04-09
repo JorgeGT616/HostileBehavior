@@ -9,5 +9,4 @@ public class Shooter : MonoBehaviour {
     public void DoShoot() {
         Instantiate(shootPrefab, shootOrigin.position, shootOrigin.rotation);
     }
-
 }

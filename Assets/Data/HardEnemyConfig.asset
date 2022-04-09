@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31fb4e3c3d9ae741a2c997f40ff36c1, type: 3}
   m_Name: HardEnemyConfig
   m_EditorClassIdentifier: 
-  moverSpeed: 2.58
+  moverSpeed: 5
   material: {fileID: 1340342096324179341, guid: 5db4a15cdac5f5f45bd271443075b4de,
     type: 3}
-  isShooter: 0
-  shootInitialWaitTime: 0
-  shootCadence: 0
-  score: 50
+  isShooter: 1
+  shootInitialWaitTime: 1
+  shootCadence: 0.5

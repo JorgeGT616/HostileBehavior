@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,12 +27,6 @@ public class EnemyController : MonoBehaviour {
             }
         }
     }
-
-    public void OnDie() {
-        Debug.Log("Hey! Im dead!");
-        GameController.Instance.OnDie(gameObject, config.score);
-    }
-
     private IEnumerator ShootForever() {
         yield return new WaitForSeconds(config.shootInitialWaitTime);
         while (true){
