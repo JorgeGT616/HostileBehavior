@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class AIEnemiga : MonoBehaviour {
     [SerializeField] Transform player;
+    //[SerializeField] GameObject jugador;
+    [SerializeField] private Mover mover;
     [SerializeField] float rangoAgro; //A cuanta distancia el enemigo ve al jugador 
     public float velocidadMov;
-    public float velocidadPlayer;
+    public float velocidadPlayer; //ejemplo
     Rigidbody2D rb2d;
 
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
+        mover = FindObjectOfType<Mover>();
     }
 
     void Update() {
         // Distancia hasta el jugador 
         float distJugador = Vector2.Distance(transform.position, player.position);
         Debug.Log("Distancia del jugador: "+ distJugador);
-        Mover velocidad = GetComponent<Mover>();
-        velocidadPlayer = velocidad.speed;
-        Debug.Log("Velocidad del jugador: "+ velocidad.speed);
+        //Mover velocidad = GetComponent<Mover>();
+        
+        Debug.Log("Velocidad del jugador: "+ mover.speed);
 
-        if(velocidadPlayer > 1){
+        if(mover.speed <= 1){
             PerseguirJugador();
         }else {
             NoPerseguir();
