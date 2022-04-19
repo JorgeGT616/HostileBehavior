@@ -16,7 +16,7 @@ public class Mover : MonoBehaviour
     }
 
     public void TomarDaño (int daño) {
-        speed -= daño;
+        //speed -= daño;
         if (speed <= 0){
             Destroy(gameObject);
         }
@@ -25,9 +25,9 @@ public class Mover : MonoBehaviour
 
     public void Curar (int curacion) {
         if ((speed + curacion) > maximoSpeed) {
-            speed = maximoSpeed;
+            //speed = maximoSpeed;
         } else {
-            speed += curacion;
+            //speed += curacion;
         }
         
     }

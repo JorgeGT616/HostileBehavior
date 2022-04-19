@@ -16,7 +16,7 @@ public class CombateJugador : MonoBehaviour {
         vida -= daño;
         BarraDeVida.CambiarVidaActual(vida);
         if (vida <= 0){
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         
     }
