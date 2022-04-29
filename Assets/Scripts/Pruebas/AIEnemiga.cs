@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AIEnemiga : MonoBehaviour {
     [SerializeField] Transform player;
     //[SerializeField] GameObject jugador;
-    [SerializeField] private CombateJugador combateJugador;
+    private CombateJugador combateJugador;
     [SerializeField] float rangoAgro; //A cuanta distancia el enemigo ve al jugador 
     public float velocidadMov;
     public float speed = 1;
+    public float vel;
     Rigidbody2D rb2d;
     public Boundary boundary;
+
+    public GameObject Reinicia;
 
 [System.Serializable]
 public class Boundary { 
@@ -26,16 +30,21 @@ public class Boundary {
         // Distancia hasta el jugador 
         float distJugador = Vector2.Distance(transform.position, player.position);
         Debug.Log("Distancia del jugador: "+ distJugador);
+        vel = distJugador;
         //Mover velocidad = GetComponent<Mover>();
-        
-        Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
+        if(distJugador  <= 2){
+            SceneManager.LoadScene("Code");
+        }else{
+            Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
 
-        if(combateJugador.vida <= 3){
-            PerseguirJugador();
-        }else {
-            NoPerseguir();
+            if(combateJugador.vida <= 3){
+                PerseguirJugador();
+            }else {
+                NoPerseguir();
+            }
         }
     }
+
     private void NoPerseguir(){
         //rb2d.velocity = Vector2.zero;
         float x = Mathf.Clamp(transform.position.x, boundary.xMinimum, boundary.xMaximum);
