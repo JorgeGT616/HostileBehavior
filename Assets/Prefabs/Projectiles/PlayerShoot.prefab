@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3151020923907234336}
   - component: {fileID: 975949094121399767}
   - component: {fileID: 627217253943353055}
-  - component: {fileID: 6119150197419216692}
+  - component: {fileID: -6310009616065914269}
   - component: {fileID: 2119441635801224455}
   m_Layer: 10
   m_Name: PlayerShoot
@@ -118,7 +118,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6119150197419216692}
+      - m_Target: {fileID: -6310009616065914269}
         m_TargetAssemblyTypeName: Instantiator, Assembly-CSharp
         m_MethodName: DoInstantiate
         m_Mode: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 0
---- !u!114 &6119150197419216692
+--- !u!114 &-6310009616065914269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

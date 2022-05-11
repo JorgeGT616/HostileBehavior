@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class AIEnemiga : MonoBehaviour {
@@ -24,6 +25,8 @@ public class Boundary {
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         combateJugador = FindObjectOfType<CombateJugador>();
+
+        Reinicia.gameObject.SetActive(false);
     }
 
     void Update() {
@@ -33,7 +36,8 @@ public class Boundary {
         vel = distJugador;
         //Mover velocidad = GetComponent<Mover>();
         if(distJugador  <= 2){
-            SceneManager.LoadScene("Code");
+            Reinicia.gameObject.SetActive(true);
+            //SceneManager.LoadScene("Code");
         }else{
             Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
 
@@ -62,7 +66,4 @@ public class Boundary {
             rb2d.velocity = new Vector2(-velocidadMov, 0f);
         }*/
     }
-    
-       
-   
 }
