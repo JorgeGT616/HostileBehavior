@@ -10,7 +10,7 @@ public class Shooter : MonoBehaviour {
     public void DoShoot() {
         Instantiate(shootPrefab, shootOrigin.position, shootOrigin.rotation);
     }
-
+    /*
     public void Awake()
     {
         //var foundTransforObjects = FindObjectsOfType<ShootOrigin>();
@@ -20,5 +20,5 @@ public class Shooter : MonoBehaviour {
 
         DontDestroyOnLoad(this.gameObject);
     }
-    
+    */
 }

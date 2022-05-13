@@ -13,26 +13,31 @@ public class PlayerController : MonoBehaviour{
     public Mover moverComponent;
     public float speed;
     public Boundary boundary;
-    [SerializeField] private List<Shooter> shooters;
+
+    [SerializeField] private GameObject shot;
+    public Transform shotSpawn;
+    public float fireRate;
+    private float nextFire;
+    //[SerializeField] private List<Shooter> shooters;
 
 
     private void Start() {
         moverComponent.speed = speed;
-        InputProvider.OnHasShoot += OnHasShoot;
+        //InputProvider.OnHasShoot += OnHasShoot;
         InputProvider.OnDirection += OnDirection;
     }
 
     private void OnDirection(Vector3 direction){
         moverComponent.direction = direction;
     }
-
+    /*
     private void OnHasShoot() {
         foreach(var shooter in shooters) {
             shooter.DoShoot();
             
         }
     }
-
+    */
     void Update(){
         //x: 9
         //y: 5
@@ -40,5 +45,11 @@ public class PlayerController : MonoBehaviour{
         float x = Mathf.Clamp(transform.position.x, boundary.xMinimum, boundary.xMaximum);
         float y = Mathf.Clamp(transform.position.y, boundary.yMinimum, boundary.yMaximum);
         transform.position = new Vector3(x, y);
+
+        if(Input.GetButton("Shoot") && Time.time > nextFire){
+
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        }
     }
 }
