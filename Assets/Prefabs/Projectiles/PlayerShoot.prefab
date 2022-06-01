@@ -130,7 +130,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  "tiempoEntreDa\xF1o": 0
+  "tiempoEntreDa\xF1o": 10
 --- !u!114 &627217253943353055
 MonoBehaviour:
   m_ObjectHideFlags: 0
