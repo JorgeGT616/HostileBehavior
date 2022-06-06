@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 1666355760288964586}
   - component: {fileID: 1674129903499053869}
   - component: {fileID: 6548837110942890823}
-  - component: {fileID: -3364518713792699616}
+  - component: {fileID: -3891354532926197500}
+  - component: {fileID: -7805777940447600175}
+  - component: {fileID: -8891968108322934876}
   m_Layer: 11
   m_Name: MeteorGreenBig
   m_TagString: Untagged
@@ -135,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ba34e54ade0cf4ea223064b86f986a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
---- !u!114 &-3364518713792699616
+  speed: 6
+--- !u!114 &-3891354532926197500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,6 +147,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 7835161636447406661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ea50be9c262a743ac4b18a7895bb04, type: 3}
+  m_Script: {fileID: 11500000, guid: a46b81312e37aa448bf8775a3a094c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7805777940447600175}
+        m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
+        m_MethodName: DoDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -8891968108322934876}
+        m_TargetAssemblyTypeName: Instantiator, Assembly-CSharp
+        m_MethodName: DoInstantiate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  "tiempoEntreDa\xF1o": 0
+--- !u!114 &-7805777940447600175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835161636447406661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11afbd8f0839ae040ae7169f3ce7ad79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 0
+--- !u!114 &-8891968108322934876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835161636447406661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5c0b073fc36294caca2e3b979c1fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 292094459389234192, guid: 743a284776040bb479d255422cfc60de, type: 3}
