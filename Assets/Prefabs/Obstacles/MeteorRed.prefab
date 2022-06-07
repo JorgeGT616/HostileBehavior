@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5c0b073fc36294caca2e3b979c1fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8026885018678724606, guid: 1fdebf23296edb34dbfa856685dbb481, type: 3}
 --- !u!58 &-1801303215073277753
 CircleCollider2D:
   m_ObjectHideFlags: 0
