@@ -6,7 +6,7 @@ public class MoveDownObject : MonoBehaviour {
     public float speed = 5;
 
     private void Start() {
-        Destroy(gameObject,13);
+        Destroy(gameObject,5);
     }
 
     private void Update() {
