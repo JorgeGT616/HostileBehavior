@@ -8,7 +8,7 @@ public class SpawnObject : MonoBehaviour {
 
     public float timeSpawn = 1;
 
-    public float repeatSpawnRate = 1;
+    public float repeatSpawnRate = 3;
 
     public Transform xRangeLeft;
     public Transform xRangeRight;
