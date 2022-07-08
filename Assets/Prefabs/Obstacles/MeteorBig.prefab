@@ -157,6 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 0
+  ExplosionFX: {fileID: 7354960288168223978, guid: 2c0ac55d7585e364b83a2e6f4deda8eb,
+    type: 3}
 --- !u!114 &-3329418991847502792
 MonoBehaviour:
   m_ObjectHideFlags: 0
