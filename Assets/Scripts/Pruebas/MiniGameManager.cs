@@ -2,35 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MiniGameManager : MonoBehaviour{
-    public Text puntuacionText;
+
+    public TMP_Text puntuacionText;
     public float puntuacionValue;
 
-    public Text maxPuntuacionText;
+    public TMP_Text maxPuntuacionText;
     public float maxPuntuacion;
 
-    public Text VelocidadText;
+    public TMP_Text VelocidadText;
     public float Velocidad;
+    public Slider distanceSlider;
 
     private AIEnemiga aiEnemiga;
 
     private void Start() {
         maxPuntuacion= PlayerPrefs.GetFloat("MaxPuntuacion");
-        maxPuntuacionText.text = maxPuntuacion.ToString("0.00");
+        maxPuntuacionText.text = "MAX SCORE: " + maxPuntuacion.ToString("0");
         aiEnemiga = FindObjectOfType<AIEnemiga>();
     }
 
     private void Update() {
         puntuacionValue += Time.deltaTime;
-        puntuacionText.text = puntuacionValue.ToString("0.00");
+        puntuacionText.text = "SCORE: " + puntuacionValue.ToString("0");
+
         Velocidad = aiEnemiga.vel;
-        VelocidadText.text = Velocidad.ToString("0.00");
+        // Slider inverso, 20 - velocidad
+        distanceSlider.value = (28 - Velocidad);
 
         if(maxPuntuacion < puntuacionValue){
             PlayerPrefs.SetFloat("MaxPuntuacion", puntuacionValue);
 
-            maxPuntuacionText.text = puntuacionValue.ToString("0.00");
+            maxPuntuacionText.text = "MAX SCORE: " + puntuacionValue.ToString("0");
         }
     }
 

@@ -8,5 +8,10 @@ public class Reiniciar : MonoBehaviour
     public void ReiniciarNuestroJuegos(){
         SceneManager.LoadScene("Code");
     }
+
+    public void RegresarAMenu()
+	{
+        SceneManager.LoadScene("TitleScreen");
+	}
     
 }

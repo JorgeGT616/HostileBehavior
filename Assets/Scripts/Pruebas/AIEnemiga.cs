@@ -31,21 +31,29 @@ public class Boundary {
 
     void Update() {
         // Distancia hasta el jugador 
-        float distJugador = Vector2.Distance(transform.position, player.position);
-        Debug.Log("Distancia del jugador: "+ distJugador);
-        vel = distJugador;
-        //Mover velocidad = GetComponent<Mover>();
-        if(distJugador  <= 2){
-            Reinicia.gameObject.SetActive(true);
-            //SceneManager.LoadScene("Code");
-        }else{
-            Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
+        if(player != null)
+		{
+            float distJugador = Vector2.Distance(transform.position, player.position);
+            Debug.Log("Distancia del jugador: " + distJugador);
+            vel = distJugador;
+            //Mover velocidad = GetComponent<Mover>();
 
-            if(combateJugador.vida <= 3){
+            Debug.Log("Velocidad del jugador: " + combateJugador.vida);
+
+            if (combateJugador.vida <= 3)
+            {
                 PerseguirJugador();
-            }else {
+            }
+            else
+            {
                 NoPerseguir();
             }
+        }
+
+        else{
+            rb2d.velocity = Vector2.zero;
+            Reinicia.gameObject.SetActive(true);
+            //SceneManager.LoadScene("Code");
         }
     }
 
