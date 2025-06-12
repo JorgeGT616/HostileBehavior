@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+[RequireComponent(typeof(Rigidbody2D))] // Ensure the GameObject has a Rigidbody2D component
 public class AIEnemiga : MonoBehaviour {
     [SerializeField] Transform player;
     //[SerializeField] GameObject jugador;
-    private CombateJugador combateJugador;
+    CombateJugador combateJugador;
     [SerializeField] float rangoAgro; //A cuanta distancia el enemigo ve al jugador 
     public float velocidadMov;
     public float speed = 1;
@@ -17,16 +19,31 @@ public class AIEnemiga : MonoBehaviour {
 
     public GameObject Reinicia;
 
-[System.Serializable]
-public class Boundary { 
-    public float xMinimum, xMaximum, yMinimum, yMaximum;
-}
+    [System.Serializable]
+    public class Boundary { 
+        public float xMinimum, xMaximum, yMinimum, yMaximum;
+    }
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        combateJugador = GameObject.FindWithTag("Player").GetComponent<CombateJugador>();
+    }
 
     void Start() {
-        rb2d = GetComponent<Rigidbody2D>();
-        combateJugador = FindObjectOfType<CombateJugador>();
+        if (combateJugador == null) {
+            Debug.LogError("CombateJugador component not found on the GameObject with tag 'Jugador'.");
+        }
 
         Reinicia.gameObject.SetActive(false);
+
+        player = GameObject.FindWithTag("Player").transform;
+        if (player == null) {
+            Debug.LogError("Player GameObject not found in the scene.");
+        }
     }
 
     void Update() {
@@ -59,7 +76,7 @@ public class Boundary {
     }
     private void PerseguirJugador(){
         if (transform.position.x < player.position.x){
-            rb2d.velocity = new Vector2(velocidadMov,0f);
+            rb2d.linearVelocity = new Vector2(velocidadMov,0f);
         }
         
         /*else if(transform.position.x > player.position.x){

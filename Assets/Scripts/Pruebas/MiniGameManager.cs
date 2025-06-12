@@ -13,18 +13,21 @@ public class MiniGameManager : MonoBehaviour{
     public Text VelocidadText;
     public float Velocidad;
 
-    private AIEnemiga aiEnemiga;
+    AIEnemiga[] aiEnemiga;
 
-    private void Start() {
+    void Start() {
         maxPuntuacion= PlayerPrefs.GetFloat("MaxPuntuacion");
         maxPuntuacionText.text = maxPuntuacion.ToString("0.00");
-        aiEnemiga = FindObjectOfType<AIEnemiga>();
+        aiEnemiga = FindObjectsByType<AIEnemiga>(FindObjectsSortMode.None);
     }
 
-    private void Update() {
+    void Update() {
         puntuacionValue += Time.deltaTime;
         puntuacionText.text = puntuacionValue.ToString("0.00");
-        Velocidad = aiEnemiga.vel;
+        foreach (AIEnemiga ai in aiEnemiga) {
+            if(ai.vel > Velocidad)
+                Velocidad = ai.vel;
+        }
         VelocidadText.text = Velocidad.ToString("0.00");
 
         if(maxPuntuacion < puntuacionValue){
