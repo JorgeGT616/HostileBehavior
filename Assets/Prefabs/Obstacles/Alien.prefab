@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: -1801303215073277753}
   - component: {fileID: 7901847479221531783}
   - component: {fileID: 7189523689960562101}
+  - component: {fileID: -1295816741461278825}
   m_Layer: 8
   m_Name: Alien
   m_TagString: Enemigos
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 0
+  destroyOnStart: 0
 --- !u!114 &6141515188854013731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5c0b073fc36294caca2e3b979c1fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3615159911031482803, guid: c668a2463fb52734e8ffc51f40e9fb02, type: 3}
+  prefab: {fileID: 2130562162121804815, guid: 5c3b6f08f94a5bd4a980b266f09b8e66, type: 3}
 --- !u!58 &-1801303215073277753
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -277,6 +279,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+--- !u!114 &-1295816741461278825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026212531279585413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b9c577f51c0e544add874aacb3da61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2847345524671311390
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -4614689585381783173}
   - component: {fileID: -3329418991847502792}
   - component: {fileID: 2689024370013341076}
+  - component: {fileID: -3131803976693914372}
   m_Layer: 8
   m_Name: MeteorBig
   m_TagString: Enemigos
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 0
+  destroyOnStart: 0
 --- !u!114 &-3329418991847502792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +205,15 @@ MonoBehaviour:
       m_Calls: []
   tagsToIgnore:
   - LevelLimit
+--- !u!114 &-3131803976693914372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69621002977640509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b9c577f51c0e544add874aacb3da61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,13 +9,20 @@ using UnityEngine.SceneManagement;
 public class AIEnemiga : MonoBehaviour {
     [SerializeField] Transform player;
     //[SerializeField] GameObject jugador;
+
+    public Boundary boundary;
+    
     CombateJugador combateJugador;
+    
     [SerializeField] float rangoAgro; //A cuanta distancia el enemigo ve al jugador 
     public float velocidadMov;
-    public float speed = 1;
+    public float speed = 2;
     public float vel;
+
+    Vector3 initialPosition;
+    
     Rigidbody2D rb2d;
-    public Boundary boundary;
+    
 
     public GameObject Reinicia;
 
@@ -29,6 +36,7 @@ public class AIEnemiga : MonoBehaviour {
     /// </summary>
     void Awake()
     {
+        initialPosition = transform.position;
         rb2d = GetComponent<Rigidbody2D>();
         combateJugador = GameObject.FindWithTag("Player").GetComponent<CombateJugador>();
     }
@@ -54,13 +62,12 @@ public class AIEnemiga : MonoBehaviour {
         //Mover velocidad = GetComponent<Mover>();
         if(distJugador  <= 2){
             Reinicia.gameObject.SetActive(true);
-            //SceneManager.LoadScene("Code");
         }else{
             Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
 
             if(combateJugador.vida <= 3){
                 PerseguirJugador();
-            }else {
+            }else { 
                 NoPerseguir();
             }
         }
@@ -72,15 +79,24 @@ public class AIEnemiga : MonoBehaviour {
         float y = Mathf.Clamp(transform.position.y, boundary.yMinimum, boundary.yMaximum);
         transform.position = new Vector3(x, y);
         transform.position += -transform.right * Time.deltaTime * speed;
-
     }
+
     private void PerseguirJugador(){
-        if (transform.position.x < player.position.x){
-            rb2d.linearVelocity = new Vector2(velocidadMov,0f);
+        float distancia = Vector2.Distance(transform.position, player.position);
+
+        if (combateJugador.vida > 1) {
+            // Se acerca pero no llega completamente (mantiene cierta distancia)
+            float distanciaMinima = 7.5f * combateJugador.vida; // Puedes ajustar esta distancia mínima
+            if (distancia > distanciaMinima) {
+                Vector2 direccion = (player.position - transform.position).normalized;
+                rb2d.linearVelocity = direccion * velocidadMov;
+            } else {
+                rb2d.linearVelocity = Vector2.zero;
+            }
+        } else {
+            // Cuando le queda 1 vida, intenta llegar completamente al jugador
+            Vector2 direccion = (player.position - transform.position).normalized;
+            rb2d.linearVelocity = direccion * velocidadMov;
         }
-        
-        /*else if(transform.position.x > player.position.x){
-            rb2d.velocity = new Vector2(-velocidadMov, 0f);
-        }*/
     }
 }
