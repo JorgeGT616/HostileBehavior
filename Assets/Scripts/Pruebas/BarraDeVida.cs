@@ -7,18 +7,15 @@ public class BarraDeVida : MonoBehaviour
 {
     private Slider slider;
 
-    private void Start() {
-        slider = GetComponent<Slider>();
-    }
-
-    public void CambiarVidaMaxima(float vidaMaxima){
-        slider.maxValue = vidaMaxima;
-    }
-
-    public void CambiarVidaActual(float cantidadVida){
-        slider.value = cantidadVida;
-    }
-
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake() => slider = GetComponent<Slider>();
+    
+    public void CambiarVidaMaxima(float vidaMaxima) => slider.maxValue = vidaMaxima;
+    
+    public void CambiarVidaActual(float cantidadVida) => slider.value = cantidadVida;
+    
     public void InicializarBarraDeVida(float cantidadVida) {
         CambiarVidaMaxima(cantidadVida);
         CambiarVidaActual(cantidadVida);

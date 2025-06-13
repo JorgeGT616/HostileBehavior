@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour {
 
-    public float destroyTime;
+    public float destroyTime = 0.0f;
 
-    public GameObject ExplosionFX;
-
+    [SerializeField]
+    bool destroyOnStart = false;
+    
     public void DoDestroy(){
-        GameObject exp = Instantiate(ExplosionFX);
-        exp.transform.position = gameObject.transform.position;
         Destroy(gameObject, destroyTime);
+    }
+
+    void Update() {
+        if (destroyOnStart) {
+            DoDestroy();
+            destroyOnStart = false; // Ensure it only runs once
+        }
     }
 }

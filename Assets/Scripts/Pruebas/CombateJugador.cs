@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombateJugador : MonoBehaviour {
-    [SerializeField] public int vida;
-    [SerializeField] int maximoVida;
-    [SerializeField] private BarraDeVida BarraDeVida;
+    public int vida;
+    public int maximoVida;
+    [SerializeField] BarraDeVida barraDeVida;
 
     private void Start() {
         vida = maximoVida;
-        BarraDeVida.InicializarBarraDeVida(vida);
+
+        barraDeVida = (BarraDeVida)FindFirstObjectByType(typeof(BarraDeVida));
+        if (barraDeVida == null) {
+            Debug.LogError("BarraDeVida not found in the scene.");
+            return;
+        }
+
+        barraDeVida.InicializarBarraDeVida(vida);
     }
 
     public void TomarDaño (int daño) {
         vida -= daño;
-        BarraDeVida.CambiarVidaActual(vida);
+        barraDeVida.CambiarVidaActual(vida);
         if (vida <= 0){
             //Destroy(gameObject);
         }
@@ -26,7 +33,7 @@ public class CombateJugador : MonoBehaviour {
             vida = maximoVida;
         } else {
             vida += curacion;
-            BarraDeVida.CambiarVidaActual(vida);
+            barraDeVida.CambiarVidaActual(vida);
         }
         
     }

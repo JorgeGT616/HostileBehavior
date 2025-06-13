@@ -11,16 +11,14 @@ public class Mover : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] int maximoSpeed;
 
-    private void Start() {
-        speed = maximoSpeed;
-    }
+    private void Start() => speed = maximoSpeed;
+    
 
     public void TomarDaño (int daño) {
         //speed -= daño;
         if (speed <= 0){
             Destroy(gameObject);
         }
-        
     }
 
     public void Curar (int curacion) {
@@ -32,7 +30,6 @@ public class Mover : MonoBehaviour
         
     }
 
-    private void Update() {
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
+    private void Update() => transform.Translate(direction * speed * Time.deltaTime);
+    
 }
