@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Curacion : MonoBehaviour {
-
-    private void OnTriggerEnter2D(Collider2D other) {
+    Instantiator ins;
+    void Awake() => ins = GetComponent<Instantiator>();
+    void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
             other.GetComponent<CombateJugador>().Curar(1);
             other.GetComponent<Mover>().Curar(1);
+            ins.DoInstantiate();
             Destroy(gameObject);
-            
         }
     }
 }

@@ -28,16 +28,18 @@ public class PlayerController : MonoBehaviour {
 
     Vector2 movementInput;
 
-    private void Awake() {
+    void Awake() {
         playerInput = GetComponent<PlayerInput>(); // Get PlayerInput component
 
         // Subscribe to input events
         playerInput.actions["Move"].performed += ctx => OnDirection(ctx.ReadValue<Vector2>());
         playerInput.actions["Move"].canceled += ctx => OnDirection(Vector2.zero);
         playerInput.actions["Fire"].performed += ctx => OnHasShoot();
+
+        playerInput.actions["Pause"].performed += ctx => OnPause();
     }
 
-    private void Start() {
+    void Start() {
         moverComponent.speed = speed;
 
         ship = GameObject.FindGameObjectWithTag("Ship");
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnDirection(Vector2 direction) {
+    void OnDirection(Vector2 direction) {
         movementInput = direction;
 
         if (direction.x != 0.0f || direction.y != 0) 
@@ -58,17 +60,27 @@ public class PlayerController : MonoBehaviour {
         moverComponent.direction = new Vector3(movementInput.x, movementInput.y, 0f);
     }
 
-    private void OnHasShoot() {
+    void OnHasShoot() {
         if (Time.time > nextFire) {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         }
     }
 
-    private void Update() {
+    void FixedUpdate() {
         float x = Mathf.Clamp(transform.position.x, boundary.xMinimum, boundary.xMaximum);
         float y = Mathf.Clamp(transform.position.y, boundary.yMinimum, boundary.yMaximum);
 
         transform.position = new Vector3(x, y);
+    }
+
+    void OnPause(){
+        // Handle pause logic here
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0; // Toggle pause
+        if (Time.timeScale == 0) {
+            Debug.Log("Game Paused");
+        } else {
+            Debug.Log("Game Resumed");
+        }
     }
 }

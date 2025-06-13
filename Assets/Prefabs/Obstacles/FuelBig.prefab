@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7261830481512997759}
   - component: {fileID: 2666797326074722521}
   - component: {fileID: 3703475182886475268}
+  - component: {fileID: 7925044321223007483}
   m_Layer: 11
   m_Name: FuelBig
   m_TagString: Untagged
@@ -192,3 +193,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b9c577f51c0e544add874aacb3da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7925044321223007483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292094459389234192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5c0b073fc36294caca2e3b979c1fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6961768588331080573, guid: bdeaf601662549b4e96df714d1d1cccf, type: 3}
