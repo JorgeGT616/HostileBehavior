@@ -1,96 +1,97 @@
-﻿Shader "Custom/Toon"
-/* Based on Roystan's tutorial*/
+﻿Shader "Custom/ToonURP"
 {
-	Properties
-	{
-		_Color("Color", Color) = (0.5, 0.65, 1, 1)
-		_MainTex("Main Texture", 2D) = "white" {}	
-		[HDR]
-		_AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
-		_RimColor("Rim Color", Color) = (1,1,1,1)
-		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
-	}
-		SubShader
-	{
-		Pass
-		{
-			Tags
-			{
-				"LightMode" = "ForwardBase"
-				"PassFlafs" = "OnlyDirectional"
-			}
+    Properties
+    {
+        _Color("Color", Color) = (0.5, 0.65, 1, 1)
+        _MainTex("Main Texture", 2D) = "white" {}
+        [HDR] _AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
+        [HDR] _RimColor("Rim Color", Color) = (1,1,1,1)
+        _RimAmount("Rim Amount", Range(0, 1)) = 0.716
+    }
 
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			#pragma multi_compile_fwdbase
-			
-			#include "UnityCG.cginc"
-			#include "Lighting.cginc"
-			#include "AutoLight.cginc"
+    SubShader
+    {
+        Tags
+        {
+            "RenderPipeline" = "UniversalRenderPipeline"
+            "RenderType"="Opaque"
+        }
 
-			struct appdata
-			{
-				float4 vertex : POSITION;				
-				float4 uv : TEXCOORD0;
-				float3 normal : NORMAL;
-			};
+        Pass
+        {
+            Name "ForwardLit"
+            Tags { "LightMode" = "UniversalForward" }
 
-			struct v2f
-			{
-				float4 pos : SV_POSITION;
-				float2 uv : TEXCOORD0;
-				float3 worldNormal : NORMAL;
-				float3 viewDir : TEXCOORD1;
-				SHADOW_COORDS(2)
-			};
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
-			
-			v2f vert (appdata v)
-			{
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				TRANSFER_SHADOW(o)
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.worldNormal = UnityObjectToWorldNormal(v.normal);
-				o.viewDir = WorldSpaceViewDir(v.vertex);
-				return o;
-			}
-			
-			float4 _Color;
-			float4 _AmbientColor;
-			float4 _RimColor;
-			float _RimAmount;
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
-			float4 frag(v2f i) : SV_Target
-			{
-				float3 viewDir = normalize(i.viewDir);
-				float3 halfVector = normalize(_WorldSpaceLightPos0 + viewDir);
+            struct Attributes
+            {
+                float4 positionOS : POSITION;
+                float3 normalOS   : NORMAL;
+                float2 uv         : TEXCOORD0;
+            };
 
-				float4 sample = tex2D(_MainTex, i.uv);
-				float3 normal = normalize(i.worldNormal);
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+                float2 uv         : TEXCOORD0;
+                float3 normalWS   : TEXCOORD1;
+                float3 viewDirWS  : TEXCOORD2;
+            };
 
-				// Shadow
-				float shadow = SHADOW_ATTENUATION(i);
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
 
-				// Lights
-				float NdotL = dot(_WorldSpaceLightPos0, normal) - 0.5;
-				float lightIntensity = smoothstep(0, 0.05, NdotL * shadow);
+            float4 _Color;
+            float4 _AmbientColor;
+            float4 _RimColor;
+            float _RimAmount;
 
-				// Rim 
-				float4 rimDot = 1 - dot(viewDir, normal);
-				float rimIntensity = rimDot * NdotL;
-				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
-				float4 rim = rimIntensity * _RimColor;
+            Varyings vert (Attributes IN)
+            {
+                Varyings OUT;
+                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
+                OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
+                float3 positionWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.viewDirWS = GetWorldSpaceViewDir(positionWS);
+                return OUT;
+            }
 
+            float4 frag (Varyings IN) : SV_Target
+            {
+                float3 normal = normalize(IN.normalWS);
+                float3 viewDir = normalize(IN.viewDirWS);
 
-				float4 light = (lightIntensity * _LightColor0)*0.60;
+                // Luz principal (directional light de URP)
+                Light mainLight = GetMainLight();
+                float NdotL = saturate(dot(normal, mainLight.direction));
 
-				return _Color * sample * (_AmbientColor + light + rim);
-			}
-			ENDCG
-		}
-	}
+                // Toon step para luces
+                float lightStep = smoothstep(0, 0.05, NdotL);
+
+                // Rim lighting
+                float rim = 1.0 - saturate(dot(viewDir, normal));
+                float rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rim);
+                float3 rimColor = rimIntensity * _RimColor.rgb;
+
+                // Textura base
+                float4 baseColor = tex2D(_MainTex, IN.uv) * _Color;
+
+                float3 finalColor = _AmbientColor.rgb + (lightStep * mainLight.color.rgb) + rimColor;
+
+                return float4(baseColor.rgb * finalColor, baseColor.a);
+            }
+            ENDHLSL
+        }
+    }
 }

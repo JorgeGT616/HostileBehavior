@@ -18,6 +18,12 @@ PrefabInstance:
       propertyPath: direction.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2119441635801224455, guid: c6f1d18a31b1a4b4093a1bf76066ffe6,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 3017d35aa75b9a847b9e3b33c7980842,
+        type: 2}
     - target: {fileID: 2343142085819663712, guid: c6f1d18a31b1a4b4093a1bf76066ffe6,
         type: 3}
       propertyPath: m_Sprite
@@ -42,7 +48,7 @@ PrefabInstance:
     - target: {fileID: 3615159911031482803, guid: c6f1d18a31b1a4b4093a1bf76066ffe6,
         type: 3}
       propertyPath: m_Name
-      value: EnemyShoot 1
+      value: EnemyShoot
       objectReference: {fileID: 0}
     - target: {fileID: 7413569873429522534, guid: c6f1d18a31b1a4b4093a1bf76066ffe6,
         type: 3}
