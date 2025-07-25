@@ -18,7 +18,10 @@ public class PlayerController : MonoBehaviour {
     float nextFire;
     
     [SerializeField] GameObject shot;
+    [SerializeField] GameObject[] ships;
     [SerializeField] GameObject ship;
+
+    public bool gameOver = false;
 
     [SerializeField] Mover moverComponent;
 
@@ -45,10 +48,18 @@ public class PlayerController : MonoBehaviour {
         ship = GameObject.FindGameObjectWithTag("Ship");
         if (ship == null) {
             Debug.LogError("Ship GameObject not found in the scene.");
-        }
+        } else Destroy(ship); // Destroy any existing ship instance
+        ship = Instantiate(ships[PlayerPrefs.GetInt("SelectedSkin", 0)], transform.position, Quaternion.Euler(180, 0, -90)); // Default to first skin if not set
+        ship.transform.SetParent(transform); // Set the ship as a child of the player controller
+        ship.transform.localPosition = Vector3.zero; // Reset position to avoid offset
+        // clear the ships array to avoid memory leaks
+        ships = new GameObject[0]; // Clear the ships array to avoid memory leaks
     }
 
     void OnDirection(Vector2 direction) {
+
+        if(gameOver) return; // Ignore input if game is over
+
         movementInput = direction;
 
         if (direction.x != 0.0f || direction.y != 0) 
@@ -61,6 +72,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnHasShoot() {
+        if(gameOver) return; // Ignore input if game is over
+
         if (Time.time > nextFire) {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);

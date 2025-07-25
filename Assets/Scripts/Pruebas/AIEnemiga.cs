@@ -22,7 +22,6 @@ public class AIEnemiga : MonoBehaviour {
     Vector3 initialPosition;
     
     Rigidbody2D rb2d;
-    
 
     public GameObject Reinicia;
 

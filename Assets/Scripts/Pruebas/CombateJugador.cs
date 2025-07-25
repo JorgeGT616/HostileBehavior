@@ -7,6 +7,14 @@ public class CombateJugador : MonoBehaviour {
     public int maximoVida;
     [SerializeField] BarraDeVida barraDeVida;
 
+    PlayerController playerController;
+
+    void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+        
+    }
+
     private void Start() {
         vida = maximoVida;
 
@@ -23,7 +31,8 @@ public class CombateJugador : MonoBehaviour {
         vida -= daño;
         barraDeVida.CambiarVidaActual(vida);
         if (vida <= 0){
-            //Destroy(gameObject);
+            playerController.gameOver = true;
+            vida = 0; // Ensure vida does not go below 0
         }
         
     }

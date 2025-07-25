@@ -51,8 +51,8 @@
 			v2f vert (appdata v)
 			{
 				v2f o;
-				TRANSFER_SHADOW(o)
 				o.pos = UnityObjectToClipPos(v.vertex);
+				TRANSFER_SHADOW(o)
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				o.viewDir = WorldSpaceViewDir(v.vertex);

@@ -2,38 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MiniGameManager : MonoBehaviour{
-    public Text puntuacionText;
+    [SerializeField] TMP_Text puntuacionText;
     public float puntuacionValue;
 
-    public Text maxPuntuacionText;
+    [SerializeField] TMP_Text maxPuntuacionText;
     public float maxPuntuacion;
 
-    public Text VelocidadText;
+    [SerializeField] TMP_Text VelocidadText;
     public float Velocidad;
 
     AIEnemiga[] aiEnemiga;
 
     void Start() {
         maxPuntuacion= PlayerPrefs.GetFloat("MaxPuntuacion");
-        maxPuntuacionText.text = maxPuntuacion.ToString("0.00");
-        aiEnemiga = FindObjectsByType<AIEnemiga>(FindObjectsSortMode.None);
+        maxPuntuacionText.text = "Max Points: " + maxPuntuacion.ToString("0");
+        aiEnemiga = GameObject.FindGameObjectWithTag("Enemy").GetComponentsInChildren<AIEnemiga>();
     }
 
     void Update() {
         puntuacionValue += Time.deltaTime;
-        puntuacionText.text = puntuacionValue.ToString("0.00");
+        puntuacionText.text = "Points: " + puntuacionValue.ToString("0");
         foreach (AIEnemiga ai in aiEnemiga) {
-            if(ai.vel > Velocidad)
-                Velocidad = ai.vel;
+            Velocidad = ai.vel - 10;
         }
-        VelocidadText.text = Velocidad.ToString("0.00");
+        VelocidadText.text = "Distance: " + Velocidad.ToString("0");
 
         if(maxPuntuacion < puntuacionValue){
             PlayerPrefs.SetFloat("MaxPuntuacion", puntuacionValue);
 
-            maxPuntuacionText.text = puntuacionValue.ToString("0.00");
+            maxPuntuacionText.text = "Max Points: " + puntuacionValue.ToString("0");
         }
     }
 
