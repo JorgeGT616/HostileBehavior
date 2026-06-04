@@ -58,7 +58,7 @@ MonoBehaviour:
     yMaximum: 5.71
   speed: 6
   fireRate: 0.25
-  ROTATION_SPEED: 40
+  rotationSpeed: 40
   shot: {fileID: 3615159911031482803, guid: c6f1d18a31b1a4b4093a1bf76066ffe6, type: 3}
   ships:
   - {fileID: 7079185090166385057, guid: 8f34d28c57c478d4a9309aee0dfac81c, type: 3}
@@ -68,9 +68,12 @@ MonoBehaviour:
   - {fileID: 7446091598458921082, guid: a80158efecf28624fbdb7686bab9476b, type: 3}
   - {fileID: 2535727901328924397, guid: a12c34efaf5eb094e9a00200df6b41ae, type: 3}
   ship: {fileID: 5552631238438907646}
+  explosionPrefab: {fileID: 7354960288168223978, guid: 2c0ac55d7585e364b83a2e6f4deda8eb, type: 3}
   gameOver: 0
   moverComponent: {fileID: 4386416015367486087}
   shotSpawn: {fileID: 1621101537511359851}
+  inputAsset: {fileID: -944628639613478452, guid: 096ab2551b7438a46bf744d462645f58, type: 3}
+  actionMapName: Player
 --- !u!114 &4386416015367486087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,8 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  speed: 0
-  maximoSpeed: 0
+  speed: 6
+  maximoSpeed: 6
 --- !u!50 &1621042253810173353
 Rigidbody2D:
   serializedVersion: 5
@@ -181,7 +184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89164129114881216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 

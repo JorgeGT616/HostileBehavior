@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; // For UI pointer events
 
+// OnMouseEnter / OnMouseExit are physics messages that only fire for GameObjects with a
+// Collider. They NEVER fire on UI (Canvas) elements, so the hover sound never played.
+// IPointerEnterHandler / IPointerExitHandler are the correct events for UI and also fire
+// on touch devices (web / mobile) when a finger goes down on the button.
 [RequireComponent(typeof(Button))]
 [RequireComponent(typeof(AudioSource))]
-public class HoverButton : MonoBehaviour
+public class HoverButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     Button button;
 
@@ -15,18 +20,14 @@ public class HoverButton : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void OnMouseEnter() {
-        if (button != null)
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (button != null && button.interactable)
         {
-            button.OnPointerEnter(null);
-            audioSource.PlayOneShot(hoverSound); // Play hover sound
+            if (hoverSound != null) audioSource.PlayOneShot(hoverSound); // Play hover sound
         }
     }
 
-    void OnMouseExit() {
-        if (button != null)
-        {
-            button.OnPointerExit(null);
-        }
+    public void OnPointerExit(PointerEventData eventData) {
+        // Nothing extra to do on exit; kept for symmetry / future use.
     }
 }

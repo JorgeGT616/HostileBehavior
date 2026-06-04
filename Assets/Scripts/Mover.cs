@@ -1,35 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//Se encarga de mover los objetos que se requiera, sin importar que objeto sea 
+// Mueve un objeto en una dirección a cierta velocidad.
 public class Mover : MonoBehaviour
 {
     public Vector3 direction;
-    //public float speed;
 
     [SerializeField] public float speed;
     [SerializeField] int maximoSpeed;
 
-    private void Start() => speed = maximoSpeed;
-    
-
-    public void TomarDaño (int daño) {
-        //speed -= daño;
-        if (speed <= 0){
-            Destroy(gameObject);
-        }
+    void Start()
+    {
+        // Solo usa la velocidad máxima como fallback si nadie asignó una velocidad
+        // (antes era incondicional y machacaba la velocidad puesta por PlayerController,
+        // dejándola en 0 según el orden de ejecución de los Start → la nave no se movía).
+        if (speed <= 0f) speed = maximoSpeed;
     }
 
-    public void Curar (int curacion) {
-        if ((speed + curacion) > maximoSpeed) {
-            //speed = maximoSpeed;
-        } else {
-            //speed += curacion;
-        }
-        
-    }
+    void Update() => transform.Translate(direction * speed * Time.deltaTime);
 
-    private void Update() => transform.Translate(direction * speed * Time.deltaTime);
-    
+    // El daño y la muerte los gestionan CombateJugador y PlayerController.Die().
+    // Antes esto hacía Destroy(gameObject) cuando speed<=0, lo que BORRABA al jugador
+    // entero al recibir un golpe (con la velocidad mal inicializada). Eliminado.
+    public void TomarDaño(int daño) { }
+
+    public void Curar(int curacion) { }
 }

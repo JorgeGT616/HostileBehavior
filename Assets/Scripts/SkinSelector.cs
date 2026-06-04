@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SkinSelector : MonoBehaviour
 {
-
+    // Keep in sync with the "ships" array order in the Player prefab.
     enum SkinType
     {
         Default,
@@ -12,44 +12,16 @@ public class SkinSelector : MonoBehaviour
         Red,
         Blue,
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    const int SkinCount = 6; // Number of available skins (SkinType values)
 
     public void SelectSkin(int skinIndex)
     {
-        SkinType selectedSkin = (SkinType)skinIndex;
-        switch (selectedSkin)
-        {
-            case SkinType.Default:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Default); 
-                break;
-            case SkinType.Green:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Green);
-                break;
-            case SkinType.Orange:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Orange);
-                break;
-            case SkinType.Purple:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Purple);
-                break;
-            case SkinType.Red:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Red);
-                break;
-            case SkinType.Blue:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Blue);
-                break;
-            default:
-                PlayerPrefs.SetInt("SelectedSkin", (int)SkinType.Default);
-                break;
-        }
+        // Clamp to a valid range so a bad button argument can never store an
+        // index that would be out of range when the ship is instantiated.
+        skinIndex = Mathf.Clamp(skinIndex, 0, SkinCount - 1);
+
+        PlayerPrefs.SetInt("SelectedSkin", skinIndex);
+        PlayerPrefs.Save(); // Required so the choice persists on WebGL builds
     }
 }

@@ -29,12 +29,15 @@ public class CombateJugador : MonoBehaviour {
 
     public void TomarDaño (int daño) {
         vida -= daño;
-        barraDeVida.CambiarVidaActual(vida);
         if (vida <= 0){
-            playerController.gameOver = true;
             vida = 0; // Ensure vida does not go below 0
+            barraDeVida.CambiarVidaActual(vida);
+            // Trigger death: hides the ship render and spawns the explosion effect
+            playerController.Die();
+            return;
         }
-        
+        barraDeVida.CambiarVidaActual(vida);
+
     }
 
     public void Curar (int curacion) {

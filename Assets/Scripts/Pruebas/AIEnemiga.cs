@@ -54,16 +54,16 @@ public class AIEnemiga : MonoBehaviour {
     }
 
     void Update() {
-        // Distancia hasta el jugador 
+        // Si el jugador ya no existe (destruido/escena cambiando), no hacer nada
+        // en vez de lanzar NullReferenceException cada frame.
+        if (player == null || combateJugador == null) return;
+
+        // Distancia hasta el jugador
         float distJugador = Vector2.Distance(transform.position, player.position);
-        Debug.Log("Distancia del jugador: "+ distJugador);
         vel = distJugador;
-        //Mover velocidad = GetComponent<Mover>();
         if(distJugador  <= 2){
             Reinicia.gameObject.SetActive(true);
         }else{
-            Debug.Log("Velocidad del jugador: "+ combateJugador.vida);
-
             if(combateJugador.vida <= 3){
                 PerseguirJugador();
             }else { 
